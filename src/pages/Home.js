@@ -11,7 +11,6 @@ const Home = () => {
 
   useEffect(() => {
     setData(getData().dataset);
-    console.log(getData().dataset);
   }, []);
   return (
     <Container maxWidth='lg' sx={{ mt: 10 }}>
