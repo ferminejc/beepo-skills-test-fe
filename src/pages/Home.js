@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import CollapsibleTable from '../common/components/CollapsibleTable';
+import Container from '@mui/material/Container';
+import ciscoData from '../data/cisco.json';
 
 const Home = () => {
+  const [data, setData] = useState([]);
+  const getData = () => {
+    return JSON.parse(JSON.stringify(ciscoData));
+  };
+
+  useEffect(() => {
+    setData(getData().dataset);
+    console.log(getData().dataset);
+  }, []);
   return (
-    <div>
-      <h1>asdfafa</h1>
-    </div>
+    <Container maxWidth='lg' sx={{ mt: 10 }}>
+      {data ? <CollapsibleTable data={data} /> : <></>}
+    </Container>
   );
 };
 
