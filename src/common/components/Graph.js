@@ -32,7 +32,7 @@ const TitleText = (props) => <Title.Text {...props} style={titleStyle} />;
 const Graph = (props) => {
   const { endDates } = props;
   return (
-    <Paper>
+    <Paper className={'fadeInUp'}>
       <Chart
         data={endDates}
         style={{ paddingLeft: '20px' }}
@@ -40,10 +40,11 @@ const Graph = (props) => {
         <ArgumentAxis tickFormat={() => (tick) => tick} />
 
         <AreaSeries
-          name='Devices Fiction'
+          name='Devices'
           valueField='NumberOfExpiringItems'
           argumentField='ExpiryDateLabel'
           seriesComponent={Area}
+          color="orange"
         />
 
         <Animation />

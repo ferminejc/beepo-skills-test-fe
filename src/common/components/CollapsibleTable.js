@@ -42,7 +42,8 @@ const createData = (
 };
 
 const Row = (props) => {
-  const { row } = props || {};
+  const { row, index } = props || {};
+  let animation = index % 2 === 0 ? 'fadeInRight' : 'fadeInLeft';
   const endDates = row.EndDates.map((e) => {
     return {
       ...e,
@@ -56,6 +57,7 @@ const Row = (props) => {
         sx={{ '& > *': { borderBottom: 'unset' } }}
         hover={true}
         onClick={() => setOpen(!open)}
+        className={animation}
       >
         <TableCell align='center' sx={{ minWidth: 100 }}>
           <Box
@@ -97,7 +99,7 @@ const Row = (props) => {
       </TableRow>
       {open ? (
         <>
-          <TableRow key={new Date() + 1000}>
+          <TableRow key={new Date() + 1000} className="fadeInDown">
             <TableCell sx={{ minWidth: 140 }}>
               <h5>NUMBER OF ASSETS</h5>
               <div>{row.NumberOfAssets ? row.NumberOfAssets : '--'}</div>
@@ -195,7 +197,7 @@ const CollapsibleTable = (props) => {
             {rows ? (
               <>
                 {rows?.map((row, index) => (
-                  <Row key={row.name + '' + index} row={row} />
+                  <Row key={row.name + '' + index} row={row} index={index} />
                 ))}
               </>
             ) : (
